@@ -1,4 +1,13 @@
-import { Box, Container, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Center,
+  Container,
+  Heading,
+  HStack,
+  Image,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 
 export default function Header() {
   return (
@@ -9,7 +18,18 @@ export default function Header() {
       bgColor={"blue.100"}
       width={"100%"}
     >
-      <Text textAlign={"center"}>HEAD</Text>
+      <HStack height="100%">
+        <Box>
+          <Image
+            boxSize={100}
+            src="https://user-images.githubusercontent.com/47108/78779352-d0839500-796a-11ea-9468-fd2a0b3fe1ef.png"
+          />
+        </Box>
+        <Box>
+          <Heading >EthereumJS</Heading>
+          <Text>Your Javascript Gateway to Ethereum</Text>
+        </Box>
+      </HStack>
     </Box>
   );
 }
