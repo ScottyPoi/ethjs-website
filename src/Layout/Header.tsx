@@ -15,7 +15,7 @@ export default function Header() {
       position={"fixed"}
       top={0}
       height={"10%"}
-      bgColor={"blue.100"}
+      bgColor={"blue.300"}
       width={"100%"}
     >
       <HStack height="100%">
