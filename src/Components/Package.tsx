@@ -32,7 +32,7 @@ type PackageData = {
 
 interface PackageProps {
   pkg: PackageData;
-  onOpen: () => void
+  onOpen: (pkg: string) => void
 }
 
 interface IRepository {
@@ -95,7 +95,7 @@ export default function Package(props: PackageProps) {
         setBG("blue.100");
       }}
       bg={bg}
-      onClick={props.onOpen}
+      onClick={() => props.onOpen(pkg.name)}
     >
       <VStack>
         <Heading textAlign={"center"}>{pkg.name}</Heading>

@@ -15,18 +15,25 @@ import {
 import packages from "../Data/packages.json";
 import Package from "../Components/Package";
 import RepoModal from "../Components/RepoModal";
+import { useState } from "react";
 
 
 
 export default function Body() {
+  const openModal = (pkg: string) => {
+    setPkg(pkg)
+    onOpen()
+  }
+
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [pkg, setPkg] = useState("")
   function ReadMe() {
     return (
       <>
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader>{pkg}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <RepoModal />
@@ -56,7 +63,7 @@ export default function Body() {
       overflowY={"scroll"}
     >
       <ReadMe />
-      <Package onOpen={onOpen} pkg={packages[0]} />
+      <Package onOpen={openModal} pkg={packages[0]} />
       <SimpleGrid
         spacing={1}
         height={"100%"}
@@ -64,7 +71,7 @@ export default function Body() {
         columns={[1, 1, 2, 2, 3, 4]}
       >
         {packages.slice(1).map((pkg, idx) => {
-          return <Package onOpen={onOpen} key={idx} pkg={pkg} />;
+          return <Package onOpen={openModal} key={idx} pkg={pkg} />;
         })}
         {/* {Object.entries(repositories).map(([name, repo]) => {
           return (<Package repo={repo} />);
