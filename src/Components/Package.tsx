@@ -17,7 +17,8 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { useContext, useEffect, useState } from "react";
-import { Repository } from "@saber2pr/types-github-api";
+import { Repository  } from "@saber2pr/types-github-api";
+
 
 type PackageData = {
   name: string;
@@ -49,10 +50,11 @@ interface IRepository {
 
 export default function Package(props: PackageProps) {
   const { pkg } = props;
-  const [repo, setRepo] = useState<Repository>();
   const [bg, setBG] = useState("blue.100");
-  const [links, setLinks] = useState<IRepository>();
   const { onCopy } = useClipboard(pkg.install);
+  const [repo, setRepo] = useState<Repository>();
+  const [links, setLinks] = useState<IRepository>();
+  const [blob, setBlob] = useState()
 
   const ethereumJSPackages = async () => {
     if (pkg.repo) {
@@ -79,6 +81,15 @@ export default function Package(props: PackageProps) {
     }
   };
 
+  const Readme = async () => {
+    const blob = await fetch(repo!.blobs_url)
+    const json = await blob.json()
+    setBlob(json)
+  }
+
+useEffect(() => {
+  Readme()
+}, [repo])
   useEffect(() => {
     ethereumJSPackages();
   }, []);
@@ -123,34 +134,37 @@ export default function Package(props: PackageProps) {
         </Tooltip>
         <HStack>
           {repo && (
-            <Table size="sm">
-              <Tbody>
-                <Tr>
-                  <Th>
-                    <Text>Stargazers</Text>
-                  </Th>
-                  <Td>
-                    <Text>{repo.stargazers_count ?? "Unknown"}</Text>
-                  </Td>
-                </Tr>
-                <Tr>
-                  <Th>
-                    <Text>Forks</Text>
-                  </Th>
-                  <Td>
-                    <Text>{repo.forks_count ?? "Unknown"}</Text>
-                  </Td>
-                </Tr>
-                <Tr>
-                  <Th>
-                    <Text>Watchers</Text>
-                  </Th>
-                  <Td>
-                    <Text>{repo.watchers_count ?? "Unknown"}</Text>
-                  </Td>
-                </Tr>
-              </Tbody>
-            </Table>
+            <Text >
+              {repo.blobs_url}
+            </Text>
+            // <Table size="sm">
+            //   <Tbody>
+            //     <Tr>
+            //       <Th>
+            //         <Text>Stargazers</Text>
+            //       </Th>
+            //       <Td>
+            //         <Text>{repo.stargazers_count ?? "Unknown"}</Text>
+            //       </Td>
+            //     </Tr>
+            //     <Tr>
+            //       <Th>
+            //         <Text>Forks</Text>
+            //       </Th>
+            //       <Td>
+            //         <Text>{repo.forks_count ?? "Unknown"}</Text>
+            //       </Td>
+            //     </Tr>
+            //     <Tr>
+            //       <Th>
+            //         <Text>Watchers</Text>
+            //       </Th>
+            //       <Td>
+            //         <Text>{repo.watchers_count ?? "Unknown"}</Text>
+            //       </Td>
+            //     </Tr>
+            //   </Tbody>
+            // </Table>
           )}
           <Box></Box>
         </HStack>

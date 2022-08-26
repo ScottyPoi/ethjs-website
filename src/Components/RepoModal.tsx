@@ -1,5 +1,9 @@
 import { Box } from "@chakra-ui/react";
 
-export default function RepoModal() {
-    return (<Box>This is the README</Box>)
+interface ReadmeProps {
+    readme: string
+}
+
+export default function RepoModal(props: ReadmeProps) {
+    return (<Box>{props.readme}</Box>)
 }

@@ -24,7 +24,7 @@ export default function Body() {
     setPkg(pkg)
     onOpen()
   }
-
+  const [readme, setReadme] = useState("")
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [pkg, setPkg] = useState("")
   function ReadMe() {
@@ -36,7 +36,7 @@ export default function Body() {
           <ModalHeader>{pkg}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <RepoModal />
+            <RepoModal readme={readme} />
           </ModalBody>
           <ModalFooter>
             <Button onClick={onClose}>Close</Button>
