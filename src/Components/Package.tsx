@@ -32,6 +32,7 @@ type PackageData = {
 
 interface PackageProps {
   pkg: PackageData;
+  onOpen: () => void
 }
 
 interface IRepository {
@@ -49,6 +50,7 @@ interface IRepository {
 export default function Package(props: PackageProps) {
   const { pkg } = props;
   const [repo, setRepo] = useState<Repository>();
+  const [bg, setBG] = useState("blue.100");
   const [links, setLinks] = useState<IRepository>();
   const { onCopy } = useClipboard(pkg.install);
 
@@ -82,7 +84,19 @@ export default function Package(props: PackageProps) {
   }, []);
 
   return (
-    <Box border={"1px"} height={"40vh"} width={"100%"} bg={"blue.100"}>
+    <Box
+      border={"1px"}
+      height={"40vh"}
+      width={"100%"}
+      onMouseEnter={() => {
+        setBG("blue.200");
+      }}
+      onMouseLeave={() => {
+        setBG("blue.100");
+      }}
+      bg={bg}
+      onClick={props.onOpen}
+    >
       <VStack>
         <Heading textAlign={"center"}>{pkg.name}</Heading>
         {links && (
@@ -102,10 +116,10 @@ export default function Package(props: PackageProps) {
           </HStack>
         )}
         <Text textAlign={"center"}>{pkg.tag}</Text>
-        <Tooltip label='COPY' fontSize={'md'} placement={'top-end'}>
-        <Button width={"80%"} border={"1px"} bg={"darkgray"} onClick={onCopy}>
-          {pkg.install}
-        </Button>
+        <Tooltip label="COPY" fontSize={"md"} placement={"top-end"}>
+          <Button width={"80%"} border={"1px"} bg={"darkgray"} onClick={onCopy}>
+            {pkg.install}
+          </Button>
         </Tooltip>
         <HStack>
           {repo && (

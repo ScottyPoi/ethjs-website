@@ -1,7 +1,44 @@
-import { Box, SimpleGrid, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  SimpleGrid,
+  Text,
+  useDisclosure,
+} from "@chakra-ui/react";
 import packages from "../Data/packages.json";
 import Package from "../Components/Package";
+import RepoModal from "../Components/RepoModal";
+
+
+
 export default function Body() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  function ReadMe() {
+    return (
+      <>
+      <Modal onClose={onClose} isOpen={isOpen} isCentered>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Modal Title</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <RepoModal />
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={onClose}>Close</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+      </>
+    );
+  }
   const content = [];
 
   for (let i = 0; i < 200; i++) {
@@ -18,7 +55,8 @@ export default function Body() {
       width={"100%"}
       overflowY={"scroll"}
     >
-      <Package pkg={packages[0]} />
+      <ReadMe />
+      <Package onOpen={onOpen} pkg={packages[0]} />
       <SimpleGrid
         spacing={1}
         height={"100%"}
@@ -26,7 +64,7 @@ export default function Body() {
         columns={[1, 1, 2, 2, 3, 4]}
       >
         {packages.slice(1).map((pkg, idx) => {
-          return (<Package key={idx} pkg={pkg} />);
+          return <Package onOpen={onOpen} key={idx} pkg={pkg} />;
         })}
         {/* {Object.entries(repositories).map(([name, repo]) => {
           return (<Package repo={repo} />);
