@@ -18,14 +18,15 @@ export default function Body() {
       width={"100%"}
       overflowY={"scroll"}
     >
+      <Package pkg={packages[0]} />
       <SimpleGrid
         spacing={1}
         height={"100%"}
         bg={"blue.900"}
         columns={[1, 1, 2, 2, 3, 4]}
       >
-        {packages.map((pkg) => {
-          return (<Package pkg={pkg} />);
+        {packages.slice(1).map((pkg, idx) => {
+          return (<Package key={idx} pkg={pkg} />);
         })}
         {/* {Object.entries(repositories).map(([name, repo]) => {
           return (<Package repo={repo} />);
