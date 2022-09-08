@@ -1,0 +1,44 @@
+{
+  "old": [
+    "ethereumjs-block",
+    "ethereumjs-blockchain",
+    "ethereumjs-client",
+    "ethereumjs-common",
+    "stateManager",
+    "merkle-patricia-tree",
+    "ethereumjs-tx",
+    "ethereumjs-util",
+    "ethereumjs-vm",
+    "node-devp2p",
+    "ethashjs",
+    "rlp"
+  ],
+  "mono": [
+    "block",
+    "blockchain",
+    "client",
+    "common",
+    "statemanager",
+    "trie",
+    "tx",
+    "util",
+    "vm",
+    "devp2p",
+    "ethash",
+    "rlp"
+  ],
+  "@": [
+      "@ethereumjs/block",
+      "@ethereumjs/blockchain",
+      "@ethereumjs/client",
+      "@ethereumjs/common",
+      "@ethereumjs/statemanager",
+      "@ethereumjs/trie",
+      "@ethereumjs/tx",
+      "@ethereumjs/util",
+      "@ethereumjs/vm",
+      "@ethereumjs/devp2p",
+      "@ethereumjs/ethjs",
+      "@ethereumjs/rlp"
+  ]
+}
