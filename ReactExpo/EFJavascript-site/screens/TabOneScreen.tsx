@@ -9,7 +9,7 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
     <View style={styles.container}>
       <Text style={styles.title}>Ethereum Javascript</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabOneScreen.tsx" />
+      <Text style={styles.subTitle}>Your Javascript Gateway to Ethereum</Text>
     </View>
   );
 }
@@ -22,6 +22,10 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
+    fontWeight: 'bold',
+  },
+  subTitle: {
+    fontSize: 18,
     fontWeight: 'bold',
   },
   separator: {
