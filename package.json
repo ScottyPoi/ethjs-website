@@ -1,14 +1,17 @@
 {
   "name": "ethjs-website",
   "version": "1.0.0",
-  "description": "",
+  "homepage": "https://scottypoi.github.io/ethjs-website",
+  "description": "Information hub for EFJavascript packages and projects",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "keywords": [],
+  "keywords": ["ethereum", "javascript", "typescript", "EthereumJS", "EFJavascript", "Ethereum Foundation"],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -25,7 +28,6 @@
     "gatsby-remark-mermaid": "^2.1.0",
     "markdown-it": "^13.0.1",
     "markdown-to-jsx": "^7.1.7",
-    "mermaid.cli": "^0.5.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-markdown": "^8.0.3",
