@@ -109,7 +109,7 @@ export default function RepoTab(props: RepoTabProps) {
           bg={"gray.800"}
           color={"blue.100"}
           >
-            {contents && md.render(contents)}
+            {/* {contents && md.render(contents)} */}
           {/* {contents && (
 
             <ReactMarkdown
