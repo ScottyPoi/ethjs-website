@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/ethjs-website/static/css/main.073c9b0a.css",
-    "main.js": "/ethjs-website/static/js/main.95b12ca0.js",
+    "main.js": "/ethjs-website/static/js/main.7f095a3e.js",
     "index.html": "/ethjs-website/index.html",
     "main.073c9b0a.css.map": "/ethjs-website/static/css/main.073c9b0a.css.map",
-    "main.95b12ca0.js.map": "/ethjs-website/static/js/main.95b12ca0.js.map"
+    "main.7f095a3e.js.map": "/ethjs-website/static/js/main.7f095a3e.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.95b12ca0.js"
+    "static/js/main.7f095a3e.js"
   ]
 }
