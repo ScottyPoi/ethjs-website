@@ -1,15 +1,7 @@
-import {
-  Content,
-  Contents,
-  Org,
-  Repositories,
-  Repository,
-  User
-} from "@saber2pr/types-github-api";
-import React, { createContext, useContext, useEffect, useState } from "react";
+import { Repositories, Repository } from "@saber2pr/types-github-api";
+import { createContext, useEffect, useState } from "react";
 import "./App.css";
 import Layout from "./Layout";
-import { Owner } from "./types/githubApiTypes";
 
 export const EthereumJS = {
   login: "ethereumjs",
@@ -45,55 +37,31 @@ export const EthereumJS = {
   type: "Organization",
 };
 
-
-
-// export const ReposContext = createContext<Repository[]>([]);
+export const ReposContext = createContext<Repository[]>([]);
 // export const ReadmeContext = createContext<string[]>([]);
 
 export default function App() {
-  // const [repos, setRepos] = useState<Repository[]>([]);
-  // const [contents, setContents] = useState<string[]>([]);
-//   const init = async () => {
-//     // const api = "https://api.github.com/orgs/ethereumjs/";
-//     // const response = await fetch(api);
-//     // const jsonData: Owner = await response.json();
-//     // setOrg(jsonData);
-// try {
-//   const _repos = await fetch(org.repos_url)
-//   const repos: Repository[] = await (_repos).json();
-//   setRepos(repos);
-// } catch (err) {
-//   console.log((err as any).message)
-// }
+  const [repos, setRepos] = useState<Repositories>([]);
 
-//     // const _contents: string[] = [];
-//     // for (const repo of repos) {
-//     //   const c = await fetch(repo.contents_url)
-//     //   const j: Contents = await (c).json()
-//     //   _contents.push(
-//     //     j[0].content ?? ""
-//     //   );
-//     // }
-//     // setContents(
-//     //   _contents.map((c) => {
-//     //     return Buffer.from(c, "base64").toString("ascii");
-//     //   })
-//     // );
-//   };
+  async function init() {
+    const repos = await fetch("https://api.github.com/orgs/ethereumjs/repos");
+    const json: Repositories = await repos.json();
+    try {
+      setRepos(json);
+    } catch (err) {
+      console.log(err, "tha's why");
+    }
+  }
 
-//   useEffect(() => {
-//     init();
-//   });
+  useEffect(() => {
+    init();
+  }, []);
 
   return (
     <>
-{/* <ReadmeContext.Provider value={contents}> */}
-              <Layout />
-            {/* </ReadmeContext.Provider> */}
-          {/* </ReposContext.Provider>
-          )}
-        </OrgContext.Provider>
-      )} */}
-    </>
+      <ReposContext.Provider value={repos}>
+      <Layout />
+</ReposContext.Provider>
+      </>
   );
 }

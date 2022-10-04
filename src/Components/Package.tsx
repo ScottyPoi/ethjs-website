@@ -1,35 +1,16 @@
-import { CopyIcon } from "@chakra-ui/icons";
 import {
   Box,
-  Button,
   Heading,
   HStack,
   Image,
   Link,
-  Table,
-  Tbody,
-  Td,
   Text,
-  Th,
-  Tooltip,
-  Tr,
-  useClipboard,
   VStack,
 } from "@chakra-ui/react";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Repository  } from "@saber2pr/types-github-api";
 
 
-type PackageData = {
-  name: string;
-  repo: string;
-  lowercase: string;
-  titlecase?: string;
-  url?: string;
-  install: string;
-  tag: string;
-  package: string;
-};
 
 interface PackageProps {
   pkg: Repository;
@@ -49,9 +30,8 @@ interface IRepository {
 }
 
 export default function Package(props: PackageProps) {
-  const { pkg, onOpen } = props;
+  const { pkg } = props;
   const [bg, setBG] = useState("blue.100");
-  // const { onCopy } = useClipboard(pkg.install);
   const [repo, setRepo] = useState<Repository>();
   const [links, setLinks] = useState<IRepository>();
   const [blob, setBlob] = useState()
